@@ -3,10 +3,9 @@ name: PR tests (clang-8, macosx, mpich)
 # Trigger the workflow on push or pull request
 on:
   push:
-    branches:
-      - develop
-      - 1.*
+    branches: [ master ]
   pull_request:
+    branches: [ master ]
 
 jobs:
 
