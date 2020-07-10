@@ -36,10 +36,10 @@ jobs:
            mkdir build && cd build
            ${ACCESS}/cmake-exodus
            make && make install
-           export exodus_LIBRARY=${ACCESS}/lib
-           export exodus_INCLUDE_DIR=${ACCESS}/include
     - name: configure
-      run: mkdir build && cd build && cmake -DCMAKE_CXX_FLAGS="-Werror" -DUSE_PURE_MPI=ON ..
+      run: |
+           mkdir build && cd build
+           cmake -DCMAKE_CXX_FLAGS="-Werror" -DUSE_PURE_MPI=ON -DSEACASExodus_DIR:PATH="${ACCESS}/lib/cmake/SEACASExodus" ..
     - name: build
       run: cmake --build build
     - name: test
