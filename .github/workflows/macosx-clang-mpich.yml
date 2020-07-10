@@ -13,22 +13,18 @@ jobs:
 
     runs-on: macos-10.15
 
-    strategy:
-      fail-fast: false
-
     env:
       CMAKE_BUILD_TYPE: release
-      VT_LB_ENABLED: 1
-      VT_TRACE_ENABLED: 1
 
     steps:
-    - uses: actions/checkout@v2
-    - uses: actions/cache@v1
-      with:
-        path: ~/.ccache
-        key: ${{ runner.os }}-macosx-clang-8-ccache-${{ hashFiles('**/*') }}
-        restore-keys: |
-          ${{ runner.os }}-macosx-clang-8-ccache-
     - name: Install Dependencies
       shell: bash
       run: brew bundle --file=ci/Brewfile
+    - uses: actions/checkout@v1
+    - name: configure
+      run: mkdir build && cd build && cmake -DCMAKE_CXX_FLAGS="-Werror" -DUSE_PURE_MPI=ON ..
+    - name: build
+      run: cmake --build build
+    - name: test
+      run: cd build && ctest
+
