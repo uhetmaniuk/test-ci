@@ -9,6 +9,7 @@ enable_testing()
 
 option(USE_PURE_MPI "Whether to use Pure MPI (no Trilinos)" OFF)
 
+find_package(Kokkos REQUIRED)
 
 # Optional dependency for pure MPI build (no Trilinos)
 if (USE_PURE_MPI)
