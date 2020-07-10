@@ -17,13 +17,7 @@ jobs:
       CMAKE_BUILD_TYPE: release
 
     steps:
-    - uses: actions/checkout@v2
-    - uses: actions/cache@v1
-      with:
-        path: ~/.ccache
-        key: ${{ runner.os }}-macosx-clang-8-ccache-${{ hashFiles('**/*') }}
-        restore-keys: |
-          ${{ runner.os }}-macosx-clang-8-ccache-
+    - uses: actions/checkout@v1
     - name: Install Dependencies
       shell: bash
       run: brew bundle --file=ci/Brewfile
