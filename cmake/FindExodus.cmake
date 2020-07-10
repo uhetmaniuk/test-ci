@@ -2,6 +2,7 @@
 # First find an Exodus that has a cmake config
 find_package(SEACASExodus CONFIG QUIET)
 if (SEACASExodus_FOUND)
+message(STATUS " found seacase exodus")
   find_library(exodus_LIBRARY NAMES exodus PATHS "${SEACASExodus_LIBRARY_DIRS}")
   mark_as_advanced(exodus_LIBRARY)
 

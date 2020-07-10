@@ -39,7 +39,8 @@ jobs:
     - name: configure
       run: |
            mkdir build && cd build
-           cmake -DCMAKE_CXX_FLAGS="-Werror" -DUSE_PURE_MPI=ON -DSEACASExodus_DIR:PATH="${ACCESS}/lib/cmake/SEACASExodus" ..
+           export ACCESS=`pwd`
+           cmake -DCMAKE_CXX_FLAGS="-Werror" -DUSE_PURE_MPI=ON -DSEACASExodus_DIR="${ACCESS}/../seacas/lib/cmake/SEACASExodus" ..
     - name: build
       run: cmake --build build
     - name: test
