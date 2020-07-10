@@ -13,7 +13,7 @@ option(USE_PURE_MPI "Whether to use Pure MPI (no Trilinos)" OFF)
 set(CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake")
 message(STATUS "${CMAKE_MODULE_PATH}")
 
-#find_package(Exodus REQUIRED)
+find_package(Exodus REQUIRED)
 
 find_package(Kokkos REQUIRED)
 

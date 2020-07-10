@@ -25,16 +25,17 @@ jobs:
            sudo apt-get install -y netcdf-bin libhdf5-serial-dev libhdf5-mpich-dev
            sudo apt-get install -y libtrilinos-tpetra-dev libtrilinos-kokkos-dev
            sudo apt-get install -y openmpi-bin libopenmpi-dev
-           sudo add-apt-repository ppa:nschloe/seacas-nightly
-           sudo apt-get update -y -qq
-           sudo apt-get install -y seacas-bin libseacas-dev
+           sudo apt-get install -y libmetis-dev
+#           sudo add-apt-repository ppa:nschloe/seacas-nightly
+#           sudo apt-get update -y -qq
+#           sudo apt-get install -y seacas-bin libseacas-dev
     - name: exodus
       run: |
            git clone https://github.com/gsjaardema/seacas.git
            cd seacas && export ACCESS=`pwd` && ./install-tpl.sh && cd $ACCESS
            mkdir build && cd build
            ${ACCESS}/cmake-exodus
-           make && make-install
+           make && make install
     - name: configure
       run: mkdir build && cd build && cmake -DCMAKE_CXX_FLAGS="-Werror" -DUSE_PURE_MPI=ON ..
     - name: build
