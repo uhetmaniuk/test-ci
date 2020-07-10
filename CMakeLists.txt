@@ -9,8 +9,12 @@ enable_testing()
 
 option(USE_PURE_MPI "Whether to use Pure MPI (no Trilinos)" OFF)
 
-LIST(APPEND CMAKE_MODULE_PATH "${CMAKE_SOURCE_PREFIX}")
+#LIST(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}")
+set(CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake")
+message(STATUS "${CMAKE_MODULE_PATH}")
+
 find_package(Exodus REQUIRED)
+
 find_package(Kokkos REQUIRED)
 
 # Optional dependency for pure MPI build (no Trilinos)
