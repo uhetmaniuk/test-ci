@@ -21,11 +21,12 @@ jobs:
     - name: Install Dependencies
       shell: bash
       run: |
-           sudo apt-get update -qq
-           sudo apt-get install -y libtrilinos-kokkos-dev
+           sudo apt-get update -y -qq
+           sudo apt-get install -y netcdf-bin libhdf5-serial-dev libhdf5-mpich-dev
+           sudo apt-get install -y libtrilinos-tpetra-dev libtrilinos-kokkos-dev
            sudo apt-get install -y openmpi-bin libopenmpi-dev
            sudo add-apt-repository ppa:nschloe/seacas-nightly
-           sudo apt-get update -qq
+           sudo apt-get update -y -qq
            sudo apt-get install -y seacas-bin libseacas-dev
     - name: configure
       run: mkdir build && cd build && cmake -DCMAKE_CXX_FLAGS="-Werror" -DUSE_PURE_MPI=ON ..
