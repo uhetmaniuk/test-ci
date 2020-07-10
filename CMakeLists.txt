@@ -9,6 +9,7 @@ enable_testing()
 
 option(USE_PURE_MPI "Whether to use Pure MPI (no Trilinos)" OFF)
 
+LIST(APPEND CMAKE_MODULE_PATH "${CMAKE_SOURCE_PREFIX}")
 find_package(Exodus REQUIRED)
 find_package(Kokkos REQUIRED)
 
