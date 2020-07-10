@@ -9,6 +9,13 @@ enable_testing()
 
 option(USE_PURE_MPI "Whether to use Pure MPI (no Trilinos)" OFF)
 
+execute_process(COMMAND "ls"
+  WORKING_DIRECTORY "/usr/local/bin"
+  RESULT_VARIABLE ls_result
+  OUTPUT_VARIABLE ls_ver)
+
+message(STATUS "ls [${ls_result}]: ${ls_ver}")
+
 #LIST(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}")
 set(CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake")
 message(STATUS "${CMAKE_MODULE_PATH}")
