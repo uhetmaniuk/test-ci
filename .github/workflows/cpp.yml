@@ -1,5 +1,6 @@
 name: ubuntu-cmake
-
+  
+# Trigger the workflow on push or pull request
 on:
   push:
     branches: [ master ]
@@ -7,14 +8,21 @@ on:
     branches: [ master ]
 
 jobs:
+
   build:
 
     runs-on: ubuntu-latest
 
+    env:
+      CMAKE_BUILD_TYPE: release
+
     steps:
     - uses: actions/checkout@v1
+    - name: Install Dependencies
+      shell: bash
+      run: apt-get update && apt-get install -y libtrilinos-kokkos-dev && apt-get install -y mpi
     - name: configure
-      run: mkdir build && cd build && cmake -DCMAKE_CXX_FLAGS="-Werror" ..
+      run: mkdir build && cd build && cmake -DCMAKE_CXX_FLAGS="-Werror" -DUSE_PURE_MPI=ON ..
     - name: build
       run: cmake --build build
     - name: test
