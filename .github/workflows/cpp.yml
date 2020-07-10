@@ -36,6 +36,8 @@ jobs:
            mkdir build && cd build
            ${ACCESS}/cmake-exodus
            make && make install
+           export exodus_LIBRARY=${ACCESS}/lib
+           export exodus_INCLUDE_DIR=${ACCESS}/include
     - name: configure
       run: mkdir build && cd build && cmake -DCMAKE_CXX_FLAGS="-Werror" -DUSE_PURE_MPI=ON ..
     - name: build
