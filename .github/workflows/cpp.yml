@@ -30,14 +30,14 @@ jobs:
            git clone https://github.com/kokkos/kokkos.git
            cd kokkos && export ACCESS=`pwd`
            mkdir build && mkdir install && cd build
-           cmake .. -DCMAKE_INSTALL_PREFIX="${ACCESS}/install"
+           cmake .. -DCMAKE_INSTALL_PREFIX="/usr/"
            make && make install
     - name: configure
       run: |
            export ACCESS=`pwd`
            mkdir build && cd build
            cmake -DCMAKE_CXX_FLAGS="-Werror" -DUSE_PURE_MPI=ON \
-                 -DHAVE_KOKKOS=ON -DKokkos_ROOT="${ACCESS}/kokkos/install/" \
+                 -DHAVE_KOKKOS=ON \
                  ..
     - name: build
       run: cmake --build build
