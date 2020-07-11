@@ -30,8 +30,8 @@ jobs:
            git clone https://github.com/kokkos/kokkos.git
            cd kokkos && export ACCESS=`pwd`
            mkdir build && mkdir install && cd build
-           cmake .. 
-           make && make install
+           cmake .. -DCMAKE_INSTALL_PREFIX="/usr/"
+           make && sudo make install
     - name: configure
       run: |
            export ACCESS=`pwd`
