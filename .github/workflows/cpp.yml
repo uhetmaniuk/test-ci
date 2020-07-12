@@ -23,6 +23,7 @@ jobs:
       run: |
            sudo apt-get update -y -qq
            sudo apt-get install -y openmpi-bin libopenmpi-dev
+           sudo apt-get install libblas-dev liblapack-dev
            sudo apt-get install -y libmetis-dev
            sudo apt-get install -y netcdf-bin libhdf5-serial-dev libhdf5-mpich-dev
     - name: kokkos
@@ -31,6 +32,7 @@ jobs:
            cd Trilinos && export ACCESS=`pwd`
            mkdir build && mkdir install && cd build
            cmake -DCMAKE_INSTALL_PREFIX="/usr/" \
+                 -DTPL_ENABLE_MPI=ON \
                  -DTrilinos_ENABLE_Tpetra=ON \
                  -DTrilinos_ENABLE_Kokkos=ON \
                  -DTrilinos_ENABLE_EXPLICIT_INSTANTIATION=ON \
