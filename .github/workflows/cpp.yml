@@ -27,10 +27,15 @@ jobs:
            sudo apt-get install -y netcdf-bin libhdf5-serial-dev libhdf5-mpich-dev
     - name: kokkos
       run: |
-           git clone https://github.com/kokkos/kokkos.git
-           cd kokkos && export ACCESS=`pwd`
+           git clone https://github.com/trilinos/Trilinos.git
+           cd trilinos && export ACCESS=`pwd`
            mkdir build && mkdir install && cd build
-           cmake .. -DCMAKE_INSTALL_PREFIX="/usr/"
+           cmake -DCMAKE_INSTALL_PREFIX="/usr/" \
+                 -DTrilinos_ENABLE_Tpetra=ON \
+                 -DTrilinos_ENABLE_Kokkos=ON \
+                 -DTrilinos_ENABLE_EXPLICIT_INSTANTIATION=ON \
+                 -DTrilinos_ENABLE_Fortran=OFF \
+                 ..
            make && sudo make install
     - name: configure
       run: |
