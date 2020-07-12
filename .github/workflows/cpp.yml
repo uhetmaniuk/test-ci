@@ -28,7 +28,7 @@ jobs:
     - name: kokkos
       run: |
            git clone https://github.com/trilinos/Trilinos.git
-           cd trilinos && export ACCESS=`pwd`
+           cd Trilinos && export ACCESS=`pwd`
            mkdir build && mkdir install && cd build
            cmake -DCMAKE_INSTALL_PREFIX="/usr/" \
                  -DTrilinos_ENABLE_Tpetra=ON \
