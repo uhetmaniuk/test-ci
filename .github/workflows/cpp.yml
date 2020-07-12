@@ -35,10 +35,9 @@ jobs:
                  -DTPL_ENABLE_MPI=ON \
                  -DTrilinos_ENABLE_Tpetra=ON \
                  -DTrilinos_ENABLE_Kokkos=ON \
-                 -DTrilinos_ENABLE_EXPLICIT_INSTANTIATION=ON \
                  -DTrilinos_ENABLE_Fortran=OFF \
                  ..
-           make && sudo make install
+           make -j8 && sudo make install
     - name: configure
       run: |
            export ACCESS=`pwd`
