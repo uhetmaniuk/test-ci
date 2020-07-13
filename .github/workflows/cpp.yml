@@ -36,6 +36,7 @@ jobs:
                  -DTrilinos_ENABLE_Tpetra=ON \
                  -DTrilinos_ENABLE_Kokkos=ON \
                  -DTrilinos_ENABLE_Fortran=OFF \
+                 -DTrilinos_ENABLE_EXPLICIT_INSTANTIATION=ON \
                  ..
            make -j4 && sudo make install
     - name: configure
