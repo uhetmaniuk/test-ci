@@ -38,6 +38,9 @@ jobs:
                  -DTrilinos_ENABLE_Fortran=OFF \
                  -DTrilinos_ENABLE_EXPLICIT_INSTANTIATION=ON \
                  ..
+    - name: trilinos make
+      run: |
+           cd Trilinos && cd build
            make -j4 && sudo make install
     - name: configure
       run: |
