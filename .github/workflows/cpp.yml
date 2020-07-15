@@ -22,10 +22,8 @@ jobs:
       shell: bash
       run: |
            sudo apt-get update -y -qq
-           sudo apt-get install -y openmpi-bin libopenmpi-dev
-           sudo apt-get install libblas-dev liblapack-dev
            sudo apt-get install -y libmetis-dev
-           sudo apt-get install -y netcdf-bin libhdf5-serial-dev libhdf5-mpich-dev
+           sudo apt-get install -y openmpi-bin libopenmpi-dev
     - name: trilinos
       run: |
            git clone https://github.com/trilinos/Trilinos.git
