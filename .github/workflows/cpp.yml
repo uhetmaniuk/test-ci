@@ -31,7 +31,4 @@ jobs:
         name: nimble_trilinos
         path: nimble_trilinos/ubuntu_trilinos.tar.gz
       if: ${{ ${{ success() }}
-      run: echo This event is a pull request that had an assignee removed.
-      if: ${{ ${{ failure() }}
-      run: echo This FAILURE
 
