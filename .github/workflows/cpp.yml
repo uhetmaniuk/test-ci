@@ -25,41 +25,13 @@ jobs:
            sudo apt-get install -y libmetis-dev
            sudo apt-get install -y libblas-dev liblapack-dev
            sudo apt-get install -y openmpi-bin libopenmpi-dev
-    - name: trilinos
-      run: |
-           git clone https://github.com/trilinos/Trilinos.git
-           export ACCESS=`pwd`
-           cd Trilinos
-           mkdir build && mkdir local
-           cd build
-           cmake -DCMAKE_INSTALL_PREFIX="${ACCESS}/Trilinos/local/" \
-                 -DTPL_ENABLE_MPI=ON \
-                 -DTrilinos_ENABLE_Tpetra=ON \
-                 -DTrilinos_ENABLE_Kokkos=ON \
-                 -DTrilinos_ENABLE_Fortran=OFF \
-                 -DTrilinos_ENABLE_EXPLICIT_INSTANTIATION=ON \
-                 ..
-    - name: trilinos make
-      run: |
-           cd Trilinos && cd build
-           make -j4 && sudo make install
-    - name: tarball
-      run: |
-           cd Trilinos/local
-           tar -czvf ../../ubuntu_trilinos.tar.gz *
-    - name: Upload
-      uses: actions/upload-artifact@v1
+    - name: Download
+      uses: actions/download-artifact@v1
       with:
         name: nimble_trilinos
-        path: ubuntu_trilinos.tar.gz
-    - name: configure
-      run: |
-           mkdir build && cd build
-           cmake -DCMAKE_CXX_FLAGS="-Werror" -DUSE_PURE_MPI=ON \
-                 -DHAVE_KOKKOS=ON \
-                 ..
-    - name: build
-      run: cmake --build build
-    - name: test
-      run: cd build && ctest
+        path: nimble_trilinos/ubuntu_trilinos.tar.gz
+      if: ${{ ${{ success() }}
+      run: echo This event is a pull request that had an assignee removed.
+      if: ${{ ${{ failure() }}
+      run: echo This FAILURE
 
