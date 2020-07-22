@@ -17,14 +17,19 @@ jobs:
            sudo apt-get install -y openmpi-bin libopenmpi-dev
            sudo apt-get install -y netcdf-bin libnetcdf-dev
            sudo apt-get install -y libhdf5-serial-dev libhdf5-mpich-dev
-    - name: Cache Primes
-      id: cache-primes
+    - name: Get Date
+      id: get-date
+      run: |
+        echo "::set-output name=date::$(/bin/date -u "+%Y%m%d")"
+      shell: bash
+    - name: Cache Trilinos
+      id: cache-trilinos
       uses: actions/cache@v2
       with:
         path: Trilinos/
-        key: ${{ runner.os }}-primes
-    - name: Generate Prime Numbers
-      if: steps.cache-primes.outputs.cache-hit != 'true'
+        key: ${{ runner.os }}-${{ steps.get-date.outputs.date }}-trilinos
+    - name: Build Trilinos 
+      if: steps.cache-trilinos.outputs.cache-hit != 'true'
       run: |
         git clone https://github.com/trilinos/Trilinos.git
         cd Trilinos
@@ -39,7 +44,7 @@ jobs:
                  -DTrilinos_ENABLE_SEACASExodiff=ON \
                  -DTrilinos_ENABLE_SEACASExodus=ON \
                  ..
-        make -j2
+        make -j4
     - name: Use Prime Numbers
       run: |
         cd Trilinos && cd build
