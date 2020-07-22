@@ -13,12 +13,12 @@ jobs:
       id: cache-primes
       uses: actions/cache@v2
       with:
-        path: prime-numbers
+        path: trilinos
         key: ${{ runner.os }}-primes
 
     - name: Generate Prime Numbers
       if: steps.cache-primes.outputs.cache-hit != 'true'
-      run: /generate-primes.sh -d prime-numbers
+      run: /atrilinos.sh
 
     - name: Use Prime Numbers
-      run: /primes.sh -d prime-numbers
+      run: /cat trilinos/hello.txt
