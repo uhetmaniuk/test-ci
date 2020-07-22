@@ -8,16 +8,9 @@ on:
     branches: [ master ]
 
 jobs:
-
-  build:
-
+  setup:
     runs-on: ubuntu-latest
-
-    env:
-      CMAKE_BUILD_TYPE: release
-
     steps:
-    - uses: actions/checkout@v1
     - name: Install Dependencies
       shell: bash
       run: |
@@ -25,10 +18,23 @@ jobs:
            sudo apt-get install -y libmetis-dev
            sudo apt-get install -y libblas-dev liblapack-dev
            sudo apt-get install -y openmpi-bin libopenmpi-dev
-    - name: Download
-      uses: actions/download-artifact@v1
-      with:
-        name: nimble_trilinos
-        path: nimble_trilinos/ubuntu_trilinos.tar.gz
-      if: ${{ success() }}
-
+  serial:
+    runs-on: ubuntu-latest
+    needs: setup
+    env:
+      CMAKE_BUILD_TYPE: release
+    steps:
+    - uses: actions/checkout@v1
+    - name: Nur
+      run: |
+        cat trtr.sh
+  mpi:
+    runs-on: ubuntu-latest
+    needs: setup
+    env:
+      CMAKE_BUILD_TYPE: release
+    steps:
+    - uses: actions/checkout@v1
+    - name: Run
+      run: |
+        cat Dockerfile
