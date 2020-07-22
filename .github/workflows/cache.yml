@@ -39,6 +39,8 @@ jobs:
                  -DTrilinos_ENABLE_SEACASExodiff=ON \
                  -DTrilinos_ENABLE_SEACASExodus=ON \
                  ..
+        make -j2
     - name: Use Prime Numbers
       run: |
-        cat Trilinos/build/CMakeCache.txt
+        cd Trilinos && cd build
+        sudo make install
