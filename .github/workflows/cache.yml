@@ -12,10 +12,14 @@ jobs:
       id: cache-primes
       uses: actions/cache@v2
       with:
-        path: trilinos
+        path: /usr/local/include/U*
         key: ${{ runner.os }}-primes
     - name: Generate Prime Numbers
       if: steps.cache-primes.outputs.cache-hit != 'true'
-      run: dtmp=$(pwd) && echo "$dtmp  atrilinos.sh"
+      run: |
+        sudo touch /usr/local/include/ULRICH.txt 
+        dtmp=$(pwd) && echo "$dtmp  atrilinos.sh"
     - name: Use Prime Numbers
-      run: dtmp=$(pwd) && echo "$dtmp  run.sh"
+      run: |
+        cat /usr/local/include/ULRICH.txt
+        dtmp=$(pwd) && echo "$dtmp  run.sh"
