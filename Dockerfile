@@ -1,3 +1,3 @@
 FROM scratch
-ADD hello /
-CMD ["/hello"]
+RUN echo "Bonjour "
+CMD ["date"]
