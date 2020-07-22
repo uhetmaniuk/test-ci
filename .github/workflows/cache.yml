@@ -7,18 +7,15 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v2
-
+    - uses: actions/checkout@v1
     - name: Cache Primes
       id: cache-primes
       uses: actions/cache@v2
       with:
         path: trilinos
         key: ${{ runner.os }}-primes
-
     - name: Generate Prime Numbers
       if: steps.cache-primes.outputs.cache-hit != 'true'
-      run: /atrilinos.sh
-
+      run: atrilinos.sh
     - name: Use Prime Numbers
-      run: /cat trilinos/hello.txt
+      run: cat trilinos/hello.txt
