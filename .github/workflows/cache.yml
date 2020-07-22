@@ -8,6 +8,15 @@ jobs:
 
     steps:
     - uses: actions/checkout@v1
+    - name: Install Dependencies
+      shell: bash
+      run: |
+           sudo apt-get update -y -qq
+           sudo apt-get install -y libblas-dev liblapack-dev
+           sudo apt-get install -y libmetis-dev
+           sudo apt-get install -y openmpi-bin libopenmpi-dev
+           sudo apt-get install -y netcdf-bin libnetcdf-dev
+           sudo apt-get install -y libhdf5-serial-dev libhdf5-mpich-dev
     - name: Cache Primes
       id: cache-primes
       uses: actions/cache@v2
