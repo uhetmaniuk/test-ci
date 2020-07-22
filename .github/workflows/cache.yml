@@ -12,16 +12,24 @@ jobs:
       id: cache-primes
       uses: actions/cache@v2
       with:
-        path: Trilinos/build
+        path: Trilinos/
         key: ${{ runner.os }}-primes
     - name: Generate Prime Numbers
       if: steps.cache-primes.outputs.cache-hit != 'true'
       run: |
-        mkdir Trilinos && cd Trilinos
+        git clone https://github.com/trilinos/Trilinos.git
+        cd Trilinos
         mkdir build && cd build
-        echo " Kawabunga " >& ULRICH.txt
-        dtmp=$(pwd) && echo "$dtmp  atrilinos.sh"
+        cmake -DCMAKE_INSTALL_PREFIX="/usr/" \
+                 -DTPL_ENABLE_MPI=ON \
+                 -DTrilinos_ENABLE_Tpetra=ON \
+                 -DTrilinos_ENABLE_Kokkos=ON \
+                 -DTrilinos_ENABLE_Fortran=OFF \
+                 -DTrilinos_ENABLE_Netcdf=ON \
+                 -DTrilinos_ENABLE_SEACASEpu=ON \
+                 -DTrilinos_ENABLE_SEACASExodiff=ON \
+                 -DTrilinos_ENABLE_SEACASExodus=ON \
+                 ..
     - name: Use Prime Numbers
       run: |
-        cat Trilinos/build/ULRICH.txt
-        dtmp=$(pwd) && echo "$dtmp  run.sh"
+        cat Trilinos/build/CMakeCache.txt
