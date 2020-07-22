@@ -16,6 +16,6 @@ jobs:
         key: ${{ runner.os }}-primes
     - name: Generate Prime Numbers
       if: steps.cache-primes.outputs.cache-hit != 'true'
-      run: atrilinos.sh
+      run: dtmp=$(pwd) && echo "$dtmp  atrilinos.sh"
     - name: Use Prime Numbers
-      run: cat trilinos/hello.txt
+      run: dtmp=$(pwd) && echo "$dtmp  run.sh"
