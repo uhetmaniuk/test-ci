@@ -25,5 +25,5 @@ jobs:
            cmake .. -DKokkos_ENABLE_SERIAL=ON -DKokkos_ENABLE_OPENMP=OFF \
                 -DCMAKE_INSTALL_PREFIX="/usr/"
            make && sudo make install
-           ls /usr/lib/ >& e.txt
+           ls /usr/lib/x86_64-linux-gnu/ >& e.txt
            cat e.txt
