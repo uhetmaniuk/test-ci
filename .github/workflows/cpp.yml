@@ -27,23 +27,3 @@ jobs:
            make && sudo make install
            ls /usr/lib/ >& e.txt
            cat e.txt
-serial:
-    runs-on: ubuntu-latest
-    needs: setup
-    env:
-      CMAKE_BUILD_TYPE: release
-    steps:
-    - uses: actions/checkout@v1
-    - name: Nur
-      run: |
-        cat trtr.sh
-  mpi:
-    runs-on: ubuntu-latest
-    needs: setup
-    env:
-      CMAKE_BUILD_TYPE: release
-    steps:
-    - uses: actions/checkout@v1
-    - name: Run
-      run: |
-        cat Dockerfile
