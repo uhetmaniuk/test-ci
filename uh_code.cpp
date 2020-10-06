@@ -5,6 +5,7 @@
 #include <mpi.h>
 #endif
 
+/// \brief Code 
 int main(int argc, char **argv) {
 
 #ifdef HAVE_MPI
